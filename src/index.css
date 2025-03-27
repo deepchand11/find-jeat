@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+@import "tailwindcss";
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: R;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}
