@@ -1,6 +1,24 @@
+import { useState } from "react";
+import axios from "axios";
 import RestaurantResults from "./RestaurantResults";
+
 export default function SearchBar() {
-  const fetchRestaurants = () => {};
+  const [postCode, setPostCode] = useState("");
+  const [status, setStatus] = useState();
+  const [apiResult, setApiResult] = useState(["This is the results array"]);
+  const fetchRestaurants = async (e) => {
+    e.preventDefault();
+    try {
+      setStatus(
+        `Please wait while fetching restaurants delivering to ${postCode}`
+      );
+      const res = await axios.get(`http://localhost:5000/api/${postCode}`);
+      console.log(res.data.restaurants.slice(0, 10));
+      setApiResult(res.data.restaurants.slice(0, 10));
+    } catch (error) {
+      setStatus("Error finding restaurants... please try again");
+    }
+  };
   return (
     <div className="bg-stone-50 h-full w-[75%] flex flex-col items-center">
       <h2 className=" text-xl p-5 text-gray-600 ">
@@ -14,7 +32,9 @@ export default function SearchBar() {
         <input
           className="shadow rounded h-[3em] px-4 border-1 border-orange-600 outline-orange-600 hover:border-3"
           id="postcode"
+          value={postCode}
           type="text"
+          onChange={(e) => setPostCode(e.target.value)}
           placeholder="E.g. 'EC4M 7RF'"
         />
         <button
@@ -23,7 +43,10 @@ export default function SearchBar() {
           Go
         </button>
       </form>
-      <RestaurantResults />
+      <p> {status}</p>
+
+      <RestaurantResults apiResult={apiResult} />
+      {postCode}
     </div>
   );
 }
