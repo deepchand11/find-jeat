@@ -16,7 +16,8 @@ app.get("/api/:postCode", async (req, res) => {
     const apiResult = await axios.get(
       `https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/${postCode}`
     );
-    res.status(200).json(apiResult.data);
+    const first10Restaurants = apiResult.data.restaurants.slice(0, 10);
+    res.status(200).json(first10Restaurants);
   } catch (error) {
     res.status(500).send(error);
   }

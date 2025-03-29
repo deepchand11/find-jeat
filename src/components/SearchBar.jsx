@@ -5,18 +5,31 @@ import RestaurantResults from "./RestaurantResults";
 export default function SearchBar() {
   const [postCode, setPostCode] = useState("");
   const [status, setStatus] = useState();
-  const [apiResult, setApiResult] = useState(["This is the results array"]);
-  const fetchRestaurants = async (e) => {
-    e.preventDefault();
-    try {
+  const [apiResult, setApiResult] = useState([]);
+  const isValidPostCode = (postCode) => {
+    const regex = /^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i; //regex to validate uk postcode , i is for case insensitivity
+    return regex.test(postCode);
+  };
+  const fetchRestaurants = async (event) => {
+    event.preventDefault();
+    if (!isValidPostCode(postCode)) {
       setStatus(
-        `Please wait while fetching restaurants delivering to ${postCode}`
+        "please enter a valid uk postcode E.g. 'EC4M 7RF' or 'CF11 8AZ' or 'L4 0TH' "
       );
-      const res = await axios.get(`http://localhost:5000/api/${postCode}`);
-      console.log(res.data.restaurants.slice(0, 10));
-      setApiResult(res.data.restaurants.slice(0, 10));
-    } catch (error) {
-      setStatus("Error finding restaurants... please try again");
+      return;
+    } else {
+      try {
+        setStatus(
+          `Please wait while fetching restaurants delivering to ${postCode}`
+        );
+        const res = await axios.get(`http://localhost:5000/api/${postCode}`);
+        setApiResult(res.data);
+        setStatus("");
+      } catch (error) {
+        setStatus(
+          "Error finding restaurants... please try again with a valid postcode E.g. EC4M 7RF"
+        );
+      }
     }
   };
   return (
@@ -34,7 +47,10 @@ export default function SearchBar() {
           id="postcode"
           value={postCode}
           type="text"
-          onChange={(e) => setPostCode(e.target.value)}
+          onChange={(e) => {
+            setPostCode(e.target.value);
+            setApiResult([]);
+          }}
           placeholder="E.g. 'EC4M 7RF'"
         />
         <button
@@ -45,8 +61,7 @@ export default function SearchBar() {
       </form>
       <p> {status}</p>
 
-      <RestaurantResults apiResult={apiResult} />
-      {postCode}
+      <RestaurantResults apiResult={apiResult} postCode={postCode} />
     </div>
   );
 }
