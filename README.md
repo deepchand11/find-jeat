@@ -1,12 +1,38 @@
-# React + Vite
+# Find A JEat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This is a project to find 10 restaurants around a postcode.
+JEat is a shortened version of Just Eat Restaurant.
+The project is built using React.js with vite and Node.js, styled with Tailwind CSS.
 
-Currently, two official plugins are available:
+## Demo 
+ Will update link here
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation and setup
+step 1: Clone the repository
+        > git clone https://github.com/sravanirc/find-a-JEat.git
+step 2: cd into the project directory
+        > cd find-a-JEat
+step 3: npm install
+        > npm install 
+step 4: npm start or npm run dev (for development)
+        > npm start    
+         or
+        > npm run dev 
+         
+step 5: open http://localhost:5173 in your browser
 
-## Expanding the ESLint configuration
+## Usage
+Enter a postcode in the input field and click the GO button to find 10 restaurants around the postcode.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Assumpmtions 
+Assumed that the api returned restaurants are valid.
+Assumed that the api returned restaurants order is irrelevant.
+
+## Future Improvements
+- Add sorting by rating
+- Add an about me page with intro
+- Add user authentication
+- Enables users to  save their favourite restaurants
+- Add a search bar to search for restaurants by Name from results
+
