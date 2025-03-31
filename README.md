@@ -10,7 +10,8 @@ The project is built using:
 
 ## Demo
 "Here’s a link to a video showcasing the Find-A-Jeat app in action!"
-[] https://drive.google.com/file/d/1SQGPQnFOX7UEQZpDEo2NzRocht2Jyvtl/view?usp=sharing
+ [[] https://drive.google.com/file/d/1SQGPQnFOX7UEQZpDEo2NzRocht2Jyvtl/view?usp=sharing]
+<video src="https://drive.google.com/file/d/1SQGPQnFOX7UEQZpDEo2NzRocht2Jyvtl/view?usp=sharing" width="320" height="240" controls></video>
 
 ## System Requirements
 
