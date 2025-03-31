@@ -2,15 +2,13 @@ import RestaurantCard from "./RestaurantCard";
 export default function RestaurantResults(props) {
   return (
     <>
-      {props.apiResult && (
-        <h2 className=" text-xl p-5 text-gray-600 ">
-          Restaurants delivering to {props.postCode}
-        </h2>
-      )}
+      <h2 className=" text-xl p-5 m-2 w-full">{props.status}</h2>
 
-      <div className="flex flex-col justify-stretch gap-5">
+      <div className="flex flex-col justify-stretch gap-5 w-full mb-5">
         {props.apiResult.map((restaurant) => {
-          return <RestaurantCard restaurant={restaurant} />;
+          return (
+            <RestaurantCard key={restaurant.name} restaurant={restaurant} />
+          );
         })}
       </div>
     </>

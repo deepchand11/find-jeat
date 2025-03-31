@@ -2,21 +2,25 @@ export default function RestaurantCard(props) {
   const restaurant = props.restaurant;
 
   return (
-    <div className="flex border-2 border-orange-600 rounded-lg shadow-lg my-5 p-5 gap-5 justify-between">
-      <h3 className="felx-1"> Name: {restaurant.name}</h3>
-      <div className="felx-1">
-        Cuisines:
+    <div className="flex border-2 border-orange-600 rounded-lg shadow-lg p-5 gap-2  w-full">
+      <h3 className="flex-1 ">
+        <strong>Name:</strong> <p>{restaurant.name}</p>
+      </h3>
+      <div className="flex-1 ">
+        <strong>Cuisines:</strong>
         {restaurant.cuisines.map((cuisine, index) => {
           return <p key={index}>{cuisine.name}</p>;
         })}
       </div>
-      <div className="felx-1">
-        Address:
+      <div className="flex-1 ">
+        <strong> Address:</strong>
         <p>{restaurant.address.firstLine}</p>
         <p>{restaurant.address.city}</p>
         <p>{restaurant.address.location.postalCode}</p>
       </div>
-      <h3 className="felx-1">Rating /5: {restaurant.rating.starRating}</h3>
+      <h3 className="flex-1">
+        <strong>Rating:</strong> <p>{restaurant.rating.starRating} /5</p>
+      </h3>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import RestaurantResults from "./RestaurantResults";
 
 export default function SearchBar() {
   const [postCode, setPostCode] = useState("");
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState("");
   const [apiResult, setApiResult] = useState([]);
   const isValidPostCode = (postCode) => {
     const regex = /^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i; //regex to validate uk postcode , i is for case insensitivity
@@ -14,17 +14,17 @@ export default function SearchBar() {
     event.preventDefault();
     if (!isValidPostCode(postCode)) {
       setStatus(
-        "please enter a valid uk postcode E.g. 'EC4M 7RF' or 'CF11 8AZ' or 'L4 0TH' "
+        "Please enter a valid UK postcode E.g. 'EC4M 7RF' or 'CF11 8AZ' or 'L4 0TH' "
       );
       return;
     } else {
       try {
         setStatus(
-          `Please wait while fetching restaurants delivering to ${postCode}`
+          `Please wait while fetching restaurants delivering to ${postCode}... `
         );
         const res = await axios.get(`http://localhost:5000/api/${postCode}`);
         setApiResult(res.data);
-        setStatus("");
+        setStatus(`Restaurants delivering to ${postCode}:`);
       } catch (error) {
         setStatus(
           "Error finding restaurants... please try again with a valid postcode E.g. EC4M 7RF"
@@ -34,12 +34,12 @@ export default function SearchBar() {
   };
   return (
     <div className="bg-stone-50 h-full w-[75%] flex flex-col items-center">
-      <h2 className=" text-xl p-5 text-gray-600 ">
+      <h2 className=" text-xl p-5 ">
         Craving a bite? Just pop in a postcode, and we’ll fetch the tastiest
         restaurants near you!
       </h2>
       <form className="flex flex-col md:flex-row lg-flex-row w-full justify-center items-center rounded gap-3 p-2 shadow-lg">
-        <label className="text-xl px-3  text-gray-600" htmlFor="postcode">
+        <label className="text-xl px-3 " htmlFor="postcode">
           Postcode:
         </label>
         <input
@@ -48,20 +48,24 @@ export default function SearchBar() {
           value={postCode}
           type="text"
           onChange={(e) => {
-            setPostCode(e.target.value);
             setApiResult([]);
+            setStatus("");
+            setPostCode(e.target.value);
           }}
           placeholder="E.g. 'EC4M 7RF'"
         />
         <button
           onClick={fetchRestaurants}
-          className="bg-orange-600 h-[3em] px-5 rounded-lg text-white hover:shadow-xl hover:bg-orange-400">
+          className="bg-orange-600 h-[3em] px-5 rounded-lg !text-white hover:shadow-xl hover:bg-orange-400">
           Go
         </button>
       </form>
-      <p> {status}</p>
 
-      <RestaurantResults apiResult={apiResult} postCode={postCode} />
+      <RestaurantResults
+        apiResult={apiResult}
+        postCode={postCode}
+        status={status}
+      />
     </div>
   );
 }
