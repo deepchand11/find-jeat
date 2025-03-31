@@ -5,11 +5,13 @@ import RestaurantResults from "./RestaurantResults";
 export default function SearchBar() {
   const [postCode, setPostCode] = useState("");
   const [status, setStatus] = useState("");
-  const [apiResult, setApiResult] = useState([]);
+  const [fetchedRestaurants, setFetchedRestaurants] = useState([]);
+
   const isValidPostCode = (postCode) => {
     const regex = /^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i; //regex to validate uk postcode , i is for case insensitivity
     return regex.test(postCode);
   };
+
   const fetchRestaurants = async (event) => {
     event.preventDefault();
     if (!isValidPostCode(postCode)) {
@@ -23,8 +25,8 @@ export default function SearchBar() {
           `Please wait while fetching restaurants delivering to ${postCode}... `
         );
         const res = await axios.get(`http://localhost:5000/api/${postCode}`);
-        setApiResult(res.data);
-        setStatus(`Restaurants delivering to ${postCode}:`);
+        setFetchedRestaurants(res.data);
+        setStatus(`Here are 10 restaurants delivering to ${postCode}:`);
       } catch (error) {
         setStatus(
           "Error finding restaurants... please try again with a valid postcode E.g. EC4M 7RF"
@@ -48,7 +50,7 @@ export default function SearchBar() {
           value={postCode}
           type="text"
           onChange={(e) => {
-            setApiResult([]);
+            setFetchedRestaurants([]);
             setStatus("");
             setPostCode(e.target.value);
           }}
@@ -62,7 +64,7 @@ export default function SearchBar() {
       </form>
 
       <RestaurantResults
-        apiResult={apiResult}
+        fetchedRestaurants={fetchedRestaurants}
         postCode={postCode}
         status={status}
       />

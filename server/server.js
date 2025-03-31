@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-const app = express();
-const PORT = 5000;
 
+import "dotenv/config";
+const app = express();
+const PORT = process.env.PORT;
+const API_BASE_URL = process.env.API_BASE_URL;
 app.use(express.json());
 app.use(cors());
 
@@ -13,9 +15,7 @@ app.get("/", (req, res) => {
 app.get("/api/:postCode", async (req, res) => {
   try {
     const postCode = req.params.postCode;
-    const apiResult = await axios.get(
-      `https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/${postCode}`
-    );
+    const apiResult = await axios.get(`${API_BASE_URL}/${postCode}`);
     const first10Restaurants = apiResult.data.restaurants.slice(0, 10);
     res.status(200).json(first10Restaurants);
   } catch (error) {
