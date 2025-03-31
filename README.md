@@ -8,7 +8,23 @@ The project is built using:
 - **Node.js** for the backend, to interact with external API
 - **Tailwind CSS** for styling
 
-## Prerequisites
+## System Requirements
+
+- **Node.js (LTS version recommended)**
+  - Install from [Node.js official website](https://nodejs.org/)
+  - Verify installation:
+    ```sh
+    node -v
+    npm -v
+    ```
+- **Git** (Recommended for version control)
+  - Install from [Git official website](https://git-scm.com/)
+  - Verify installation:
+    ```sh
+    git --version
+    ```
+- **Package Manager**:
+  - **npm** (comes with Node.js)
 
 ## Installation & Setup
 
@@ -42,6 +58,18 @@ Visit: [http://localhost:5173](http://localhost:5173)
 3. The app will display 10 restaurants around the entered postcode.
 
 ## Assumptions
+- By default, this application assumes the backend server will run on **port 5005**.
+
+**If port 5005 is already in use** on your machine, you can update the port in your `.env` file by changing the value of the `VITE_SERVER_PORT` variable to an available port E.g. VITE_SERVER_PORT=5006 or VITE_SERVER_PORT=5007 etc..
+After updating the `.env` file,save and **restart the application** to apply the changes.
+``` ctrl + C 
+    npm start
+```
+
+For example:
+``` ./.env
+PORT=5006
+```
 - The API returns valid restaurant data.
 - The order of returned restaurants is not relevant.
 

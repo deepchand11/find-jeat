@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "dotenv/config";
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.VITE_SERVER_PORT;
 const API_BASE_URL = process.env.API_BASE_URL;
 app.use(express.json());
 app.use(cors());
