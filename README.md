@@ -69,15 +69,15 @@ Visit: [http://localhost:5173](http://localhost:5173)
 **If port 5005 is already in use** on your machine, you can update the port in your `.env` file by changing the value of the `VITE_SERVER_PORT` variable to an available port E.g. VITE_SERVER_PORT=5006 or VITE_SERVER_PORT=5007 etc..
 After updating the `.env` file,save and **restart the application** to apply the changes.
 ``` ctrl + C 
-    npm start
+   npm start
 ```
-
 For example:
-``` ./.env
-PORT=5006
 ```
-- The API returns valid restaurant data.
-- The order of returned restaurants is not relevant.
+ ./.env
+VITE_SERVER_PORT=5006
+```
+- It is assumed that the API returns valid restaurant data.
+- It is assumed that the order of returned restaurants is not relevant.
 
 ## Future Improvements
 ✅ **Planned Enhancements:**
