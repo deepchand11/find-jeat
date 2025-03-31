@@ -57,6 +57,10 @@ Visit: [http://localhost:5173](http://localhost:5173)
 2. Click the **GO** button.
 3. The app will display 10 restaurants around the entered postcode.
 
+## Demo
+["Here’s a link to a video showcasing the Find-A-Jeat app in action!"]
+ https://drive.google.com/file/d/1SQGPQnFOX7UEQZpDEo2NzRocht2Jyvtl/view?usp=sharing
+
 ## Assumptions
 - By default, this application assumes the backend server will run on **port 5005**.
 
