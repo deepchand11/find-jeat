@@ -24,7 +24,7 @@ export default function SearchBar() {
         setStatus(
           `Please wait while fetching restaurants delivering to ${postCode}... `
         );
-        const res = await axios.get(`http://localhost:5000/api/${postCode}`);
+        const res = await axios.get(`http://localhost:5005/api/${postCode}`);
         setFetchedRestaurants(res.data);
         setStatus(`Here are 10 restaurants delivering to ${postCode}:`);
       } catch (error) {
