@@ -28,7 +28,7 @@ export default function SearchBar() {
           `http://localhost:${import.meta.env.VITE_SERVER_PORT}/api/${postCode}`
         );
         setFetchedRestaurants(res.data);
-        setStatus(`Here are 10 restaurants delivering to ${postCode}:`);
+        setStatus(`Here are 10 restaurants near ${postCode}:`);
       } catch (error) {
         setStatus(
           "Error finding restaurants... please try again with a valid postcode E.g. EC4M 7RF"
