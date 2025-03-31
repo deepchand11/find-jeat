@@ -8,8 +8,7 @@ The project is built using:
 - **Node.js** for the backend, to interact with external API
 - **Tailwind CSS** for styling
 
-## Demo
-(Coming soon – link will be updated here)
+## Prerequisites
 
 ## Installation & Setup
 
