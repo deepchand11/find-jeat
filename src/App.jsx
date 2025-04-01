@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Title from "./components/Title.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 
